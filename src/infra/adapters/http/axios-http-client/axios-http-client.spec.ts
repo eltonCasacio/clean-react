@@ -1,40 +1,33 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AxiosHttpClient } from "./axios-http-client"
-import axios from 'axios'
-import {faker} from '@faker-js/faker'
-import { HttpPostClientParams } from "@/data/protocols/http"
+import { mockAxios } from "@/infra/test"
+import { mockPostRequest } from "@/data/test"
+import axios from "axios"
 
 jest.mock('axios')
-const mockedAxios = axios as jest.Mocked<typeof axios>
-const mockedAxiosResult = {
-    data: faker.helpers.objectValue<any>({}),
-    status: faker.random.alphaNumeric()
+
+type SutTypes = {
+    sut: AxiosHttpClient,
+    mockedAxios: jest.Mocked<typeof axios>
 }
-
-mockedAxios.post.mockResolvedValue(mockedAxiosResult)
-
-const sutFactory = (): AxiosHttpClient => {
-    return new AxiosHttpClient()
+const sutFactory = (): SutTypes => {
+    return {
+        sut: new AxiosHttpClient(),
+        mockedAxios: mockAxios()
+    }
 }
-
-const mockPostRequest = (): HttpPostClientParams<any> => ({
-    url:faker.internet.url(),
-    body: faker.helpers.objectValue<any>({})
-})
 
 describe("AxiosHttpClient", () => {
-    test("should call axios with correct values", async() => {
+    test("should call axios with correct values", async () => {
         const request = mockPostRequest()
-        const sut = sutFactory()
-        await sut.post({url: request.url})
+        const { sut, mockedAxios } = sutFactory()
+        await sut.post({ url: request.url })
         expect(mockedAxios.post).toHaveBeenCalledWith(request.url, request.body)
     })
 
-    test("should return the correct statusCode and body", async() => {
-        const sut = sutFactory()
-        const httpResponse = await sut.post(mockPostRequest())
-        expect(httpResponse).toEqual({
-            statusCode: mockedAxiosResult.status,
-            body: mockedAxiosResult.data
-        })
+    test("should return the correct statusCode and body", () => {
+        const { sut, mockedAxios } = sutFactory()
+        const promise = sut.post(mockPostRequest())
+        expect(promise).toEqual(mockedAxios.post.mock.results[0].value)
     })
 })
