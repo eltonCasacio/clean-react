@@ -17,6 +17,9 @@
     "@faker-js/faker": "^7.5.0",
     "@types/axios": "^0.14.0",
     "@types/jest": "^29.0.0",
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "eslint": "^8.23.0",
@@ -32,8 +35,9 @@
     "ts-jest": "^28.0.8"
   },
   "dependencies": {
-    "@types/node": "^18.7.16",
     "axios": "^0.27.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^4.8.2"
   }
 }
