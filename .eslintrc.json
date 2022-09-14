@@ -5,8 +5,7 @@
     }
    },
     "extends": [
-        "plugin:@typescript-eslint/recommended", 
-        "standard-with-typescript"
+        "plugin:@typescript-eslint/recommended"
     ],
     "plugins": ["react"],
     "parserOptions": {
