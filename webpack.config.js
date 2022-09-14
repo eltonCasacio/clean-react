@@ -15,25 +15,30 @@ module.exports = {
     },
   },
   module: {
-    rules: [{
-      test: /\.ts(x?)$/,
-      loader: 'ts-loader',
-      exclude: /node_modules/
-    },{
-      test: /\.scss/,
-      use: [{
-        loader: 'style-loader'
+    rules: [
+      {
+        test: /\.ts(x?)$/,
+        loader: "ts-loader",
+        exclude: /node_modules/,
       },
       {
-        loader: 'css-loader',
-        options: {
-          modules: true
-        }
+        test: /\.scss/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+          {
+            loader: "sass-loader",
+          },
+        ],
       },
-      {
-        loader: 'sass-loader'
-      }]
-    }]
+    ],
   },
   devServer: {
     static: "./public",
