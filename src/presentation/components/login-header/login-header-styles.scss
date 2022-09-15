@@ -1,0 +1,19 @@
+@import "../../styles//colors.scss";
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $green;
+  border-top: 20px solid $green-dark;
+
+  img {
+      width: 50px;
+      margin-top: 40px;
+  }
+
+  h1 {
+      color: $white;
+      margin: 16px 0 40px;
+  }
+}
