@@ -3,6 +3,7 @@ import React from "react";
 import Styles from "./login-styles.scss";
 import LoginHeader from "@/presentation/components/login-header/login-header";
 import Footer from "@/presentation/components/footer/footer";
+import Input from "@/presentation/components/input/input";
 
 const Login: React.FC = () => {
   return (
@@ -10,15 +11,9 @@ const Login: React.FC = () => {
      <LoginHeader />
       <form action="" className={Styles.form}>
         <h2>Login</h2>
-        <div className={Styles.inputWrap}>
-          <input type="email" className="email" placeholder="Digite seu e-mail" />
-          <span className={Styles.status}>🔴</span>
-        </div>
-        <div className={Styles.inputWrap}>
-        <input type="password" className="password" placeholder="Digite sua senha" />
-          <span className={Styles.status}>🔴</span>
-        </div>
-        
+        <Input type="email" className="email" placeholder="Digite seu e-mail"/>
+        <Input  type="password" className="password" placeholder="Digite sua senha"/>
+       
         <button className={Styles.submit} type="submit">Entrar</button>
         <span className={Styles.signup}>Criar Conta</span>
         <div className={Styles.errorWrap}>
