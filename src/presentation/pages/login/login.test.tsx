@@ -8,5 +8,13 @@ describe("Login unit test", () => {
 
     const submitButton = screen.getByRole("button", {name: /Entrar/}) as HTMLButtonElement
     expect(submitButton.disabled).toBeTruthy()
+
+    const emailStatus = screen.getByTestId('email-status')
+    expect(emailStatus.title).toBe('Campo obrigatório')
+    expect(emailStatus.textContent).toBe('🔴')
+
+    const passwordStatus = screen.getByTestId('password-status')
+    expect(passwordStatus.title).toBe('Campo obrigatório')
+    expect(passwordStatus.textContent).toBe('🔴')
   });
 });
