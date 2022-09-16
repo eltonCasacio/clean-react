@@ -19,7 +19,7 @@ interface FormContextProviderProps {
 }
 const FormContextProvider: React.FC<FormContextProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage] = useState('');
 
   const value = useMemo((): StateProps => {
     return { isLoading, setIsLoading, errorMessage };
